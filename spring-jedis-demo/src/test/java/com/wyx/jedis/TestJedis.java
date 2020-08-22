@@ -4,8 +4,8 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
 /**
+ * @Description : 通过jedis直连
  * @author : Just wyx
- * @Description : TODO 2020/8/22
  * @Date : 2020/8/22
  */
 public class TestJedis {

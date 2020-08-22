@@ -3,27 +3,35 @@ package com.wyx.jedis;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Description : 通过jedisPool直连
  * @author : Just wyx
  * @Date : 2020/8/22
  */
-public class TestJedisPool {
-	private JedisPool jedisPool;
+public class TestJedisCluster {
+	private JedisCluster jedis;
 
 	@Before
-	public void initJedisPool() {
-		System.out.println("init jedisPool...");
-		this.jedisPool = new JedisPool("127.0.0.1", 6379);
+	public void initJedisCluster() {
+		System.out.println("init jedisCluster...");
+		Set<HostAndPort> nodes = new HashSet<>();
+		nodes.add(new HostAndPort("192.168.1.55", 7001));
+		nodes.add(new HostAndPort("192.168.1.55", 7002));
+		nodes.add(new HostAndPort("192.168.1.55", 7003));
+		jedis = new JedisCluster(nodes);
+
 	}
 
 	@Test
-	public void testJedisPoll() {
-		// 从连接池中获得连接
-		Jedis jedis = jedisPool.getResource();
+	public void testJedisCluster() {
 
 		String key = "myTest";
 		// 删除key
@@ -40,7 +48,7 @@ public class TestJedisPool {
 
 	@After
 	public void close() {
-		System.out.println("close jedisPool...");
-		jedisPool.close();
+		System.out.println("close jedisCluster...");
+		jedis.close();
 	}
 }
