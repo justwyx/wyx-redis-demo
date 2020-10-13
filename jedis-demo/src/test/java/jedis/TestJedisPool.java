@@ -1,4 +1,4 @@
-package com.wyx.jedis;
+package jedis;
 
 import org.junit.After;
 import org.junit.Before;
@@ -31,7 +31,7 @@ public class TestJedisPool {
 		// 第一次获取对应key的value
 		System.out.println(key + ":" +jedis.get(key));
 		// set key value
-		jedis.set("myTest", "hello world");
+		jedis.set(key, "hello world");
 		// 第二次获取对应key的value
 		System.out.println(key + ":" +jedis.get(key));
 		// 关闭连接
