@@ -25,4 +25,19 @@ public class SpringbootRedisDemoApplication {
 		redisTemplate.setConnectionFactory(redisConnectionFactory);
 		return redisTemplate;
 	}
+
+	@Bean
+	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+		RedisTemplate<String, String> redis = new RedisTemplate<>();
+		redis.setConnectionFactory(redisConnectionFactory);
+
+		// 设置redis的String/Value的默认序列化方式
+		redis.setKeySerializer(new StringRedisSerializer());
+		redis.setValueSerializer(new StringRedisSerializer());
+		redis.setHashKeySerializer(new StringRedisSerializer());
+		redis.setHashValueSerializer(new StringRedisSerializer());
+
+		redis.afterPropertiesSet();
+		return redis;
+	}
 }

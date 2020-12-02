@@ -1,4 +1,4 @@
-package com.wyx.springbootredisdemo;
+package com.wyx.springbootredisdemo.util;
 
 import com.iiasaas.uc.entity.shiro.SupplierShiroUser;
 import org.apache.shiro.session.Session;

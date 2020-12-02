@@ -1,5 +1,6 @@
 package com.wyx.springbootredisdemo;
 
+import com.wyx.springbootredisdemo.util.ByteRedisTemplateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.wyx.springbootredisdemo;
+package com.wyx.springbootredisdemo.util;
 
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisCallback;
