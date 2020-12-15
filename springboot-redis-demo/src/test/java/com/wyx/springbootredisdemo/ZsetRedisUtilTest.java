@@ -1,6 +1,5 @@
 package com.wyx.springbootredisdemo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wyx.springbootredisdemo.util.ZsetRedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author : Just wyx
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ZsetRedisUtilTest {
-	private final static String ZSET_REDIS_KEY_TEST = "zset:redis:key:test";
+	private final static String ZSET_REDIS_KEY_TEST = "PLATFORM:MSG:TIMED:TASK:KEY";
 
 	@Resource
 	private ZsetRedisUtil zsetRedisUtil;
@@ -36,7 +36,11 @@ public class ZsetRedisUtilTest {
 
 	@Test
 	public void testGetOneByScore() {
-		String one = zsetRedisUtil.getOneByScore(ZSET_REDIS_KEY_TEST,10);
+		// 1607070115467
+		// 1607491800000
+		long timeLong = new Date().getTime();
+		System.out.println("timeLong:" + timeLong);
+		String one = zsetRedisUtil.getOneByScore(ZSET_REDIS_KEY_TEST, 1607491800000L);
 		System.out.println("redis-zset-getOneByScore:" + one);
 	}
 
